@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# ShopHub — Full Stack Ecommerce
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A complete ecommerce application with **React** frontend and **Spring Boot** backend.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Product catalog with search and category filters
+- User registration and JWT authentication
+- Shopping cart (add, update, remove items)
+- Checkout with shipping address
+- Order history and order details
+- Responsive modern UI
+- H2 in-memory database with sample products
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+ecommerce/
+├── backend/          # Spring Boot REST API (port 8080)
+├── src/              # React frontend (port 3000)
+├── public/
+└── package.json
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+- **Java 17+** (JDK installed)
+- **Node.js 18+** and npm
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+### 1. Start the Backend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```powershell
+cd backend
+.\mvnw.cmd spring-boot:run
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The API runs at `http://localhost:8080`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- H2 Console: `http://localhost:8080/h2-console`
+  - JDBC URL: `jdbc:h2:mem:shopdb`
+  - Username: `sa`
+  - Password: *(empty)*
 
-### `npm run eject`
+### 2. Start the Frontend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Open a new terminal:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```powershell
+cd ecommerce
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The app opens at `http://localhost:3000`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## API Endpoints
 
-## Learn More
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/auth/register` | No | Register new user |
+| POST | `/api/auth/login` | No | Login, returns JWT |
+| GET | `/api/products` | No | List all products |
+| GET | `/api/products?q=` | No | Search products |
+| GET | `/api/products?category=` | No | Filter by category |
+| GET | `/api/products/{id}` | No | Product details |
+| GET | `/api/categories` | No | List categories |
+| GET | `/api/cart` | Yes | Get user cart |
+| POST | `/api/cart/items` | Yes | Add item to cart |
+| PUT | `/api/cart/items/{id}?quantity=` | Yes | Update quantity |
+| DELETE | `/api/cart/items/{id}` | Yes | Remove from cart |
+| POST | `/api/orders` | Yes | Place order |
+| GET | `/api/orders` | Yes | List user orders |
+| GET | `/api/orders/{id}` | Yes | Order details |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Tech Stack
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Frontend:** React 19, React Router, Axios, CSS  
+**Backend:** Spring Boot 3.4, Spring Security, JWT, Spring Data JPA, H2  
+**Build:** Maven Wrapper (no global Maven required), Create React App
 
-### Code Splitting
+## Demo Flow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Browse products on the home page
+2. Click **Sign Up** to create an account
+3. Add products to cart from product detail page
+4. Go to **Cart** → **Proceed to Checkout**
+5. Enter shipping address and place order
+6. View order confirmation and history under **Orders**
