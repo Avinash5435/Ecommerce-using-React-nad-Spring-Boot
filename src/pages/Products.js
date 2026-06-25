@@ -18,6 +18,10 @@ function Products() {
   }, []);
 
   useEffect(() => {
+    setSearch(query);
+  }, [query]);
+
+  useEffect(() => {
     setLoading(true);
     const params = new URLSearchParams();
     if (query) params.set('q', query);
@@ -37,6 +41,17 @@ function Products() {
     setSearchParams(params);
   };
 
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const clearSearch = () => {
+    setSearch('');
+    const params = new URLSearchParams();
+    if (category) params.set('category', category);
+    setSearchParams(params);
+  };
+
   const handleCategoryFilter = (cat) => {
     const params = new URLSearchParams();
     if (query) params.set('q', query);
@@ -47,6 +62,13 @@ function Products() {
   return (
     <div className="container page">
       <h1 className="page-title">All Products</h1>
+      {(query || category) && (
+        <div className="search-summary">
+          {query && <span>Showing results for <strong>"{query}"</strong></span>}
+          {query && category && <span> · </span>}
+          {category && <span>Category: <strong>{category}</strong></span>}
+        </div>
+      )}
 
       <div className="filters">
         <form onSubmit={handleSearch} className="search-form">
@@ -54,9 +76,14 @@ function Products() {
             type="text"
             placeholder="Search products..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={handleSearchChange}
           />
           <button type="submit" className="btn btn-primary">Search</button>
+          {search && (
+            <button type="button" className="btn btn-secondary ml-2" onClick={clearSearch}>
+              Clear
+            </button>
+          )}
         </form>
 
         <div className="filter-chips">
