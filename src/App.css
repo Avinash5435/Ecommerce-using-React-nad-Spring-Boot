@@ -362,6 +362,34 @@ img {
   margin-bottom: 2rem;
 }
 
+.search-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sort-select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-select label {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.sort-select select {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  min-width: 180px;
+  background: var(--white);
+  color: var(--text);
+}
+
 .search-summary {
   display: flex;
   flex-wrap: wrap;

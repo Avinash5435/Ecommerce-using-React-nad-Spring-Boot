@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import client from '../api/client';
 import ProductCard from '../components/ProductCard';
@@ -9,6 +9,7 @@ function Products() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(searchParams.get('q') || '');
+  const [sortOption, setSortOption] = useState(searchParams.get('sort') || '');
 
   const category = searchParams.get('category') || '';
   const query = searchParams.get('q') || '';
@@ -20,6 +21,10 @@ function Products() {
   useEffect(() => {
     setSearch(query);
   }, [query]);
+
+  useEffect(() => {
+    setSortOption(searchParams.get('sort') || '');
+  }, [searchParams]);
 
   useEffect(() => {
     setLoading(true);
@@ -38,6 +43,7 @@ function Products() {
     const params = new URLSearchParams();
     if (search.trim()) params.set('q', search.trim());
     if (category) params.set('category', category);
+    if (sortOption) params.set('sort', sortOption);
     setSearchParams(params);
   };
 
@@ -45,10 +51,21 @@ function Products() {
     setSearch(e.target.value);
   };
 
+  const handleSortChange = (e) => {
+    const value = e.target.value;
+    setSortOption(value);
+    const params = new URLSearchParams();
+    if (query) params.set('q', query);
+    if (category) params.set('category', category);
+    if (value) params.set('sort', value);
+    setSearchParams(params);
+  };
+
   const clearSearch = () => {
     setSearch('');
     const params = new URLSearchParams();
     if (category) params.set('category', category);
+    if (sortOption) params.set('sort', sortOption);
     setSearchParams(params);
   };
 
@@ -56,8 +73,25 @@ function Products() {
     const params = new URLSearchParams();
     if (query) params.set('q', query);
     if (cat && cat !== category) params.set('category', cat);
+    if (sortOption) params.set('sort', sortOption);
     setSearchParams(params);
   };
+
+  const sortedProducts = useMemo(() => {
+    const items = [...products];
+    switch (sortOption) {
+      case 'price-asc':
+        return items.sort((a, b) => Number(a.price) - Number(b.price));
+      case 'price-desc':
+        return items.sort((a, b) => Number(b.price) - Number(a.price));
+      case 'name-asc':
+        return items.sort((a, b) => a.name.localeCompare(b.name));
+      case 'name-desc':
+        return items.sort((a, b) => b.name.localeCompare(a.name));
+      default:
+        return items;
+    }
+  }, [products, sortOption]);
 
   return (
     <div className="container page">
@@ -71,20 +105,33 @@ function Products() {
       )}
 
       <div className="filters">
-        <form onSubmit={handleSearch} className="search-form">
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={search}
-            onChange={handleSearchChange}
-          />
-          <button type="submit" className="btn btn-primary">Search</button>
-          {search && (
-            <button type="button" className="btn btn-secondary ml-2" onClick={clearSearch}>
-              Clear
-            </button>
-          )}
-        </form>
+        <div className="search-row">
+          <form onSubmit={handleSearch} className="search-form">
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={search}
+              onChange={handleSearchChange}
+            />
+            <button type="submit" className="btn btn-primary">Search</button>
+            {search && (
+              <button type="button" className="btn btn-secondary ml-2" onClick={clearSearch}>
+                Clear
+              </button>
+            )}
+          </form>
+
+          <div className="sort-select">
+            <label htmlFor="sort">Sort by:</label>
+            <select id="sort" value={sortOption} onChange={handleSortChange}>
+              <option value="">Default</option>
+              <option value="price-asc">Price low → high</option>
+              <option value="price-desc">Price high → low</option>
+              <option value="name-asc">Name A → Z</option>
+              <option value="name-desc">Name Z → A</option>
+            </select>
+          </div>
+        </div>
 
         <div className="filter-chips">
           <button
@@ -113,7 +160,7 @@ function Products() {
         <div className="empty-state">No products found.</div>
       ) : (
         <div className="product-grid">
-          {products.map((product) => (
+          {sortedProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
