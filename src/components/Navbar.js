@@ -1,10 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 
 function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
   const { cart } = useCart();
+  const { wishlist } = useWishlist();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -21,6 +23,12 @@ function Navbar() {
 
         <div className="nav-links">
           <Link to="/products">Products</Link>
+          {isAuthenticated && (
+            <Link to="/wishlist" className="wishlist-link">
+              Wishlist
+              {wishlist.length > 0 && <span className="cart-badge">{wishlist.length}</span>}
+            </Link>
+          )}
           {isAuthenticated && <Link to="/orders">Orders</Link>}
         </div>
 

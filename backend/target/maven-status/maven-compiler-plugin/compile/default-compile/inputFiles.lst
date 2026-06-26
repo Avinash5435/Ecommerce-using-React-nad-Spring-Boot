@@ -4,6 +4,7 @@ C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\controller\Aut
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\controller\CartController.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\controller\OrderController.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\controller\ProductController.java
+C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\controller\WishlistController.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\dto\ApiError.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\dto\AuthResponse.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\dto\CartItemRequest.java
@@ -15,6 +16,8 @@ C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\dto\OrderItemR
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\dto\OrderResponse.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\dto\ProductResponse.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\dto\RegisterRequest.java
+C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\dto\WishlistItemRequest.java
+C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\dto\WishlistItemResponse.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\EcommerceApplication.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\entity\Cart.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\entity\CartItem.java
@@ -24,6 +27,8 @@ C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\entity\OrderSt
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\entity\Product.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\entity\Role.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\entity\User.java
+C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\entity\Wishlist.java
+C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\entity\WishlistItem.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\exception\BadRequestException.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\exception\GlobalExceptionHandler.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\exception\ResourceNotFoundException.java
@@ -31,6 +36,8 @@ C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\repository\Car
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\repository\OrderRepository.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\repository\ProductRepository.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\repository\UserRepository.java
+C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\repository\WishlistItemRepository.java
+C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\repository\WishlistRepository.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\security\CustomUserDetailsService.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\security\JwtAuthenticationFilter.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\security\JwtService.java
@@ -38,3 +45,4 @@ C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\service\AuthSe
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\service\CartService.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\service\OrderService.java
 C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\service\ProductService.java
+C:\Users\srivi\ecommerce\backend\src\main\java\com\shop\ecommerce\service\WishlistService.java

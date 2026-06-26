@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import client from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
+import WishlistButton from '../components/WishlistButton';
 
 function ProductDetail() {
   const { id } = useParams();
@@ -87,6 +88,7 @@ function ProductDetail() {
               >
                 {adding ? 'Adding...' : 'Add to Cart'}
               </button>
+              <WishlistButton productId={product.id} />
             </div>
           )}
 

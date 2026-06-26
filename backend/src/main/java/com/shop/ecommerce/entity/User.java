@@ -1,6 +1,7 @@
 package com.shop.ecommerce.entity;
 
 import jakarta.persistence.*;
+import com.shop.ecommerce.entity.Wishlist;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +39,9 @@ public class User implements UserDetails {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Wishlist wishlist;
 
     public User() {
     }
@@ -105,6 +109,14 @@ public class User implements UserDetails {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public Wishlist getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
     }
 
     @Override
