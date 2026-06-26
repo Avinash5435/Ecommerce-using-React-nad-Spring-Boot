@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
+import SearchBar from './SearchBar';
 
 function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -20,6 +21,8 @@ function Navbar() {
         <Link to="/" className="logo">
           Shop<span>Hub</span>
         </Link>
+
+        <SearchBar />
 
         <div className="nav-links">
           <Link to="/products">Products</Link>
