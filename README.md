@@ -87,3 +87,5 @@ The app opens at `http://localhost:3000`
 4. Go to **Cart** → **Proceed to Checkout**
 5. Enter shipping address and place order
 6. View order confirmation and history under **Orders**
+7. ### Git Pull Test Line!
+
